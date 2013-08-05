@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+ 
+var txt = "";
+
+$(document).ready(function(){
+  
+$("button").click(function(){
+$.getJSON('http://seeplus.cartodb.com/api/v2/sql/?q=SELECT ST_Distance(a.the_geom, b.the_geom) as dist FROM table_382226 a,' 
++'table_382226 b WHERE a.cartodb_id in (280) AND b.cartodb_id in (4222)', function(data) {
+    $.each(data.rows, function(key, val) {
+  	$("div").append(key + " " + val.dist);
+    });
+	
+	
+	});	
+   });
+});
+</script>
+</head>
+<body>
+
+<button>Get JSON data</button>
+<div></div>
+
+</body>
+</html>
